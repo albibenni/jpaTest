@@ -1,12 +1,7 @@
 package com.agap2.restful.webservices.teamleasing.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.Table;
-import jakarta.persistence.Transient;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "Partner", schema = "dbo")
@@ -16,7 +11,11 @@ public class Partner {
 		super();
 	}
 
+	//questo genera l'id della tabella, solitamente e' la primary key della tabella
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+
 	private int partnerID;
 
 	private String partener;

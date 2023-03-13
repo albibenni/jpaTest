@@ -1,24 +1,18 @@
 package com.agap2.restful.webservices.teamleasing.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.PrimaryKeyJoinColumn;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "userpartner", schema = "dbo")
 public class UserPartner {
 
-	public UserPartner() {
-		super();
-	}
-
+	//questo genera l'id della tabella, solitamente e' la primary key della tabella
 	@Id
-	@PrimaryKeyJoinColumn
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+
 	private int partnerID;
 
-	@PrimaryKeyJoinColumn
 	private String partener;
 	private String descrizione;
 

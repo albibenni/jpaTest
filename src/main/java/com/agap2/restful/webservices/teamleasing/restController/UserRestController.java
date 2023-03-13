@@ -1,15 +1,14 @@
 package com.agap2.restful.webservices.teamleasing.restController;
 
-import java.util.List;
-import java.util.Optional;
-
+import com.agap2.restful.webservices.teamleasing.entity.AppUser;
+import com.agap2.restful.webservices.teamleasing.exception.UserNotFoundException;
+import com.agap2.restful.webservices.teamleasing.repository.AppUserRepository;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.agap2.restful.webservices.teamleasing.entity.AppUser;
-import com.agap2.restful.webservices.teamleasing.exception.UserNotFoundException;
-import com.agap2.restful.webservices.teamleasing.repository.AppUserRepository;
+import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class UserRestController {
@@ -27,13 +26,12 @@ public class UserRestController {
 	}
 	
 	@GetMapping("/user/{id}")
-	public Optional<AppUser> retrieveUserById(@PathVariable int id) {
-		Optional<AppUser> user = userRepository.findById(id);
-
-		if (user.isEmpty())
-			throw new UserNotFoundException("User Not found. id:" + id);
-		return user;
-
+	public AppUser retrieveUserById(@PathVariable int id) {
+		Optional<AppUser> userOptional = userRepository.findById(id);
+		if (userOptional.isPresent()){
+			return userOptional.get();
+		}
+		throw new UserNotFoundException("User Not found. id:" + id);
 
 	}
 

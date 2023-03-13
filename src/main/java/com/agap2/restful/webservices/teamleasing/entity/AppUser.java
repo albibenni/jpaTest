@@ -1,27 +1,19 @@
 package com.agap2.restful.webservices.teamleasing.entity;
 
-import java.util.List;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.*;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.Table;
-import jakarta.persistence.Transient;
+import java.util.List;
 
 @Entity
 @Table(name = "Appuser", schema = "dbo")
 public class AppUser {
 
-	public AppUser() {
-		super();
-	}
-
 	@Id
-	private int userID;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
 	@Column(name = "doyoubuzzid")
 	private int doYouBuzzID;
@@ -68,13 +60,11 @@ public class AppUser {
 	@OneToOne
 	private Ruoli ruolo;
 	
-	@OneToMany(mappedBy = "user")
-	private List<Skills> skills;
-	*/
 
-	public int getUserID() {
-		return userID;
-	}
+	*/
+	@OneToMany(mappedBy = "appUser", cascade = CascadeType.ALL)
+	private List<Skills> skills;
+
 	
 	public int getDoYouBuzzID() {
 		return doYouBuzzID;
@@ -134,7 +124,7 @@ public class AppUser {
 
 	@Override
 	public String toString() {
-		return "AppUser [userID=" + userID + ", doYouBuzzID=" + doYouBuzzID + ", nome=" + nome + ", cognome=" + cognome
+		return "AppUser [userID=" + id + ", doYouBuzzID=" + doYouBuzzID + ", nome=" + nome + ", cognome=" + cognome
 				+ ", citta=" + citta + ", regione=" + regione + ", cap=" + cap + ", patente=" + patente + ", roleID="
 				+ roleID + ", isTeamLeader=" + isTeamLeader + ", isWorkingForAgap=" + isWorkingForAgap
 				+ ", presentazione=" + presentazione + ", link=" + link + ", posizione=" + posizione + ", pathImg="
