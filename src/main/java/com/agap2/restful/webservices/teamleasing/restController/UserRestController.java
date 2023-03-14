@@ -45,8 +45,8 @@ public class UserRestController {
 //    }
 
     @GetMapping("/user/skill/{id}")
-    public Skills retrieveUserAndSkill(@PathVariable Long id) {
-        return userRestService.getSkillsForUser(id);
+    public Skills retrieveUserAndSkill(@PathVariable Integer cap) {
+        return userRestService.getSkillsForUser(cap.toString());
     }
 
     /*

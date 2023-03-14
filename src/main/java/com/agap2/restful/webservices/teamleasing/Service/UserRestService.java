@@ -23,9 +23,9 @@ public class UserRestService {
 //        return user2;
 //    }
 
-    public Skills getSkillsForUser(Long id) {
+    public Skills getSkillsForUser(String cap) {
 //        AppUser user = userRepository.FindBySkills_id(id).get();
-        Skills user2 = skillRepository.getSkills().get();
+        Skills user2 = skillRepository.getSkills(cap).get(0);
 
         return user2;
     }
