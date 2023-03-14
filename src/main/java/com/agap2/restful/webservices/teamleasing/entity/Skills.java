@@ -6,42 +6,30 @@ import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
 @Entity
-@Table(name = "Skills", schema = "dbo")
+@Table(name = "skills")
 public class Skills {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+    public Skills() {
+    }
 
-	private String skill;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-	@JsonIgnore
-	private String icon;
+    private String skill;
 
-	 @ManyToOne(fetch = FetchType.LAZY)
-	 @Fetch(value = FetchMode.JOIN)
-	 private AppUser user;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @Fetch(value = FetchMode.JOIN)
+    private AppUser user;
 
 
-	public String getSkill() {
-		return skill;
-	}
+    public String getSkill() {
+        return skill;
+    }
 
-	public void setSkill(String skill) {
-		this.skill = skill;
-	}
-
-	public String getIcon() {
-		return icon;
-	}
-
-	public void setIcon(String icon) {
-		this.icon = icon;
-	}
-
-	@Override
-	public String toString() {
-		return "Skills [skillID=" + id + ", skill=" + skill + ", icon=" + icon + "]";
-	}
+    @Override
+    public String toString() {
+        return "Skills [skillID=" + id + ", skill=" + skill + "]";
+    }
 
 }
